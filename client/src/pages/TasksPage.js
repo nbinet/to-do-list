@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 
-const MainComponent = () => {
+const TasksPage = () => {
     const [values, setValues] = useState([]);
     const [value, setValue] = useState("");
 
@@ -55,4 +55,4 @@ const MainComponent = () => {
     );
 };
 
-export default MainComponent;
+export default TasksPage;
