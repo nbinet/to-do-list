@@ -6,13 +6,12 @@ const HomePage = () => {
     const [values, setValues] = useState([]);
     const [value, setValue] = useState("");
 
-    const getAllNumbers = useCallback(async () => {
-        // we will use nginx to redirect it to the proper URL
+    const getAllTasks = useCallback(async () => {
         const data = await axios.get("/api/values/all");
         setValues(data.data.rows.map((row) => row.number));
     }, []);
 
-    const saveNumber = useCallback(
+    const saveTask = useCallback(
         async (event) => {
             event.preventDefault();
 
@@ -21,20 +20,19 @@ const HomePage = () => {
             });
 
             setValue("");
-            getAllNumbers();
+            getAllTasks();
         },
-        [value, getAllNumbers]
+        [value, getAllTasks]
     );
 
     useEffect(() => {
-        getAllNumbers();
+        getAllTasks();
     }, []);
 
     return (
-        <div className="bg-green-500 flex flex-col gap-2">
-            {/* <button onClick={getAllNumbers}>Get all numbers</button> */}
+        <div className="flex flex-col items-center gap-2">
             <span className="">Today, there is {values.length} tasks created</span>
-            <Link className="cursor-pointer" to="/tasks">
+            <Link className="cursor-pointer bg-slate-300 py-2 px-4 rounded-lg" to="/tasks">
                 Go see them
             </Link>
         </div>
